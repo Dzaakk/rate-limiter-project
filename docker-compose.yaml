@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
   redis:
@@ -12,6 +12,7 @@ services:
     container_name: go-rate-limiter
     environment:
       - REDIS_ADDR=redis:6379
+      - STORAGE_TYPE=${STORAGE_TYPE}
     ports:
       - "8080:8080"
     depends_on:
