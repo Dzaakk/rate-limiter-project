@@ -1,6 +1,6 @@
 # Rate Limiter Service
 
-A production-ready, thread-safe rate limiting service built with Go that implements a fixed window rate limiting algorithm. Supports both in-memory and distributed (Redis) storage backends with comprehensive testing and clean architecture.
+A thread-safe rate limiting service built with Go that implements a fixed window rate limiting algorithm. Implementation uses a per-client fixed window with lazy initialization: the window starts on the client’s first hit (TTL set on first increment), not on wall-clock minute boundaries. Supports both in-memory and distributed (Redis) storage backends with comprehensive testing and clean architecture.
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ A production-ready, thread-safe rate limiting service built with Go that impleme
 ✅ **Dual Storage Backend** - In-Memory (development) and Redis (production)  
 ✅ **Standard HTTP Headers** - `X-RateLimit-*` headers for client visibility  
 ✅ **Clean Architecture** - Separation of concerns with testable components  
-✅ **Comprehensive Testing** - 80%+ code coverage with unit and integration tests  
+✅ **Testing** – Includes comprehensive unit tests ensuring core functionality and reliability  
 ✅ **Docker Support** - Easy deployment with Docker Compose  
 ✅ **Graceful Shutdown** - Proper cleanup and connection handling  
 ✅ **Structured Logging** - JSON logs for easy monitoring and debugging
@@ -53,10 +53,12 @@ rate-limiter/
 │       │      └── memory.go      # In-memory storage implementation  
 │       └── redis/
 │              └── redis.go       # Redis storage implementation
+├── .env
 ├── main.go                   
 ├── docker-compose.yaml         
 ├── Dockerfile                                
-└── README.md
+├── architecture.png
+└── Readme.md
 ```
 
 ### Architecture Diagram
